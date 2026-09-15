@@ -1,0 +1,11 @@
+{
+  "name": "idmark",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ID/certificate protection watermark tool: tile or corner text marks for photos of IDs, licenses and resumes; template-based texts, live preview, batch 20, EXIF stripped on output. 100% in-browser.",
+  "scripts": {
+    "start": "npx --yes serve .",
+    "test": "node tools/test-engine-math.mjs"
+  }
+}

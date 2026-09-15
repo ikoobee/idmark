@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>证件照加水印 - 身份证/营业执照防护水印工具，本地处理不上传</title>
+  <meta name="description" content="在线为身份证、营业执照、房产证等证件添加&ldquo;仅用于办理XX，他用无效&rdquo;防护水印。整体平铺密铺、日期自动填充、本地处理不上传、自动去除位置信息，免费无需注册。">
+  <meta name="keywords" content="证件加水印,身份证加水印,身份证复印件水印,营业执照加水印,房产证水印,防盗用">
+  <meta name="author" content="CertWatermark">
+  <link rel="canonical" href="https://your-domain.example/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="证件照加水印 - 30 秒防护你的身份证复印件">
+  <meta property="og:description" content="本地处理不上传，自动去除位置信息，免费在线证件水印工具。">
+  <meta property="og:url" content="https://your-domain.example/">
+  <meta property="og:site_name" content="证件水印卫士">
+  <meta property="og:image" content="https://your-domain.example/assets/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="证件照加水印 - 30 秒防护你的身份证复印件">
+  <meta name="twitter:description" content="本地处理不上传，自动去除位置信息，免费在线证件水印工具。">
+  <meta name="twitter:image" content="https://your-domain.example/assets/og-cover.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- 结构化数据（P0-2）：WebApplication + FAQPage，与页面可见内容一致；域名替换时同步修改 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "证件水印卫士",
+    "alternateName": "证件照加水印工具",
+    "url": "https://your-domain.example/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "在线为身份证、营业执照、房产证等证件添加防护水印，本地处理不上传，自动去除位置信息。",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "加水印真的能防盗用吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "半透明密铺水印无法完全防止技术性去除，但能显著提高盗用成本，在纠纷中也是重要的举证材料。建议水印覆盖证件关键信息之外的完整画面，并写明具体用途。" }
+      },
+      {
+        "@type": "Question",
+        "name": "我的图片会被上传吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不会。全部处理都在你的浏览器本地完成，关闭页面后数据即消失，我们没有任何服务器接收你的图片。" }
+      },
+      {
+        "@type": "Question",
+        "name": "水印文字写什么最安全？",
+        "acceptedAnswer": { "@type": "Answer", "text": "推荐“仅用于办理XX（具体用途），他用无效”+ 日期，三行以内。用途越具体，被盗用后的免责效果越好。" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">🛡️</span><span data-i18n="brand">证件水印卫士</span></a>
+      <nav class="nav">
+        <a href="#how" data-i18n="navHow">使用步骤</a>
+        <a href="#faq" data-i18n="navFaq">常见问题</a>
+        <select id="langSelector" aria-label="Language">
+          <option value="zh-CN">中文</option>
+          <option value="en">English</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <h1 data-i18n="heroTitle">证件照加水印，防盗用必备</h1>
+      <p data-i18n="heroSub">为身份证、营业执照、房产证等添加"仅用于办理 XX，他用无效"防护水印</p>
+      <ul class="badges">
+        <li data-i18n="badgeLocal">🔒 本地处理</li>
+        <li data-i18n="badgeNoUpload">🚫 图片不上传</li>
+        <li data-i18n="badgeExif">📍 自动去除位置信息</li>
+      </ul>
+    </section>
+
+    <!-- 广告位预埋（P0）：AdSense 审核通过后填入代码，空容器不占版面 -->
+    <div class="ad-slot" data-ad="top" aria-hidden="true"></div>
+
+    <!-- 工具区 -->
+    <section class="card tool-card" id="tool">
+      <div id="dropZone" class="dropzone" role="button" tabindex="0" aria-label="upload">
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+        <div class="dz-icon">🖼️</div>
+        <p class="dz-title" data-i18n="uploadTitle">点击选择、拖拽或 Ctrl+V 粘贴图片</p>
+        <p class="dz-hint" data-i18n="uploadHint">支持 JPG / PNG / WebP，最多 20 张</p>
+      </div>
+      <div id="thumbs" class="thumbs" hidden></div>
+      <p class="hint" style="margin:8px 0 0">
+        <span data-i18n="noImageHint">没有图片？</span>
+        <button type="button" id="sampleBtn" class="link-btn" data-i18n="sampleBtn">用虚拟示例图试用</button>
+      </p>
+
+      <div class="form">
+        <div class="row2">
+          <div class="field">
+            <label for="purpose" data-i18n="purposeLabel">用途</label>
+            <select id="purpose"></select>
+            <input type="text" id="customPurpose" class="mt-4" hidden
+                   data-i18n-placeholder="purposePlaceholder" placeholder="输入用途，如：办理银行卡">
+          </div>
+          <div class="field">
+            <label for="date" data-i18n="dateLabel">日期</label>
+            <input type="date" id="date">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="text" data-i18n="textLabel">水印文字</label>
+          <textarea id="text" rows="2" spellcheck="false"></textarea>
+          <div class="field-foot">
+            <span class="hint" data-i18n="textHint">按用途自动生成，可直接修改；回车换行</span>
+            <button type="button" id="resetTpl" class="link-btn" data-i18n="resetTpl">恢复模板文案</button>
+          </div>
+        </div>
+
+        <details class="adv">
+          <summary data-i18n="advTitle">高级设置</summary>
+          <div class="row2">
+            <div class="field">
+              <label for="position" data-i18n="advPosition">位置</label>
+              <select id="position">
+                <option value="tile" selected data-i18n="posTile">整体平铺</option>
+                <option value="center" data-i18n="posCenter">居中</option>
+                <option value="tl" data-i18n="posTL">左上角</option>
+                <option value="tr" data-i18n="posTR">右上角</option>
+                <option value="bl" data-i18n="posBL">左下角</option>
+                <option value="br" data-i18n="posBR">右下角</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="density" data-i18n="advDensity">水印密度</label>
+              <input type="number" id="density" min="2" max="10" step="1" value="3" inputmode="numeric">
+            </div>
+          </div>
+          <div class="field">
+            <label data-i18n="advColor">颜色</label>
+            <div class="swatches">
+              <button type="button" class="swatch active" data-color="#ffffff" style="background:#ffffff" title="#ffffff"></button>
+              <button type="button" class="swatch" data-color="#dedede" style="background:#dedede" title="#dedede"></button>
+              <button type="button" class="swatch" data-color="#000000" style="background:#000000" title="#000000"></button>
+              <button type="button" class="swatch" data-color="#e74c3c" style="background:#e74c3c" title="#e74c3c"></button>
+              <input type="color" id="colorPicker" value="#ffffff" title="custom color">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="sizePct"><span data-i18n="advSize">字号（长边%）</span>：<span id="sizeVal">3%</span></label>
+              <input type="range" id="sizePct" min="1" max="8" step="0.5" value="3">
+            </div>
+            <div class="field">
+              <label for="opacity"><span data-i18n="advOpacity">透明度</span>：<span id="opacityVal">80%</span></label>
+              <input type="range" id="opacity" min="20" max="100" step="5" value="80">
+            </div>
+          </div>
+          <div class="field">
+            <label class="check-row"><input type="checkbox" id="strokeToggle"> <span data-i18n="advStroke">文字描边（白底扫描件可读）</span></label>
+          </div>
+        </details>
+
+        <div id="livePreviewWrap" class="live-preview" hidden>
+          <div id="livePreview"></div>
+          <span class="hint" data-i18n="previewHint">实时预览 · 输出为原图分辨率</span>
+        </div>
+
+        <div class="actions">
+          <button id="generateBtn" class="btn primary lg" data-i18n="generate">生成水印</button>
+          <button id="resetBtn" class="btn ghost lg" data-i18n="reset">重置</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 结果区 -->
+    <section id="results" class="card results" hidden>
+      <div class="results-head">
+        <h2 data-i18n="resultsTitle">处理结果</h2>
+        <button id="downloadAllBtn" class="btn primary" data-i18n="downloadAll">全部下载</button>
+      </div>
+      <div id="resultList" class="result-list"></div>
+    </section>
+
+    <!-- 广告位预埋：页中 -->
+    <div class="ad-slot" data-ad="middle" aria-hidden="true"></div>
+
+    <!-- 使用步骤（SEO） -->
+    <section id="how" class="card prose">
+      <h2 data-i18n="howTitle">如何给证件加水印？</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 data-i18n="how1Title">1. 上传证件照片</h3>
+          <p data-i18n="how1Body">点击、拖拽或直接粘贴截图。图片只在你的浏览器里处理，不会上传到任何服务器。</p>
+        </div>
+        <div class="step">
+          <h3 data-i18n="how2Title">2. 选择用途</h3>
+          <p data-i18n="how2Body">选择"办理贷款 / 租房 / 入职"等用途，系统自动生成"仅用于办理XX，他用无效"+ 当天日期的水印文案，也可手动修改。</p>
+        </div>
+        <div class="step">
+          <h3 data-i18n="how3Title">3. 下载或复制</h3>
+          <p data-i18n="how3Body">点击生成后逐张下载，或复制到剪贴板直接粘贴到微信发送。输出的图片已自动去除拍摄位置（GPS）等信息。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ（SEO） -->
+    <section id="faq" class="card prose">
+      <h2 data-i18n="faqTitle">常见问题</h2>
+      <details class="faq-item">
+        <summary data-i18n="faq1q">加水印真的能防盗用吗？</summary>
+        <p data-i18n="faq1a">半透明密铺水印无法完全防止技术性去除，但能显著提高盗用成本，在纠纷中也是重要的举证材料。建议水印覆盖证件关键信息之外的完整画面，并写明具体用途。</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq2q">我的图片会被上传吗？</summary>
+        <p data-i18n="faq2a">不会。全部处理都在你的浏览器本地完成，关闭页面后数据即消失，我们没有任何服务器接收你的图片。</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq3q">水印文字写什么最安全？</summary>
+        <p data-i18n="faq3a">推荐"仅用于办理XX（具体用途），他用无效"+ 日期，三行以内。用途越具体，被盗用后的免责效果越好。</p>
+      </details>
+    </section>
+  </main>
+
+  <!-- 广告位预埋：页尾 -->
+  <div class="ad-slot" data-ad="bottom" aria-hidden="true"></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p data-i18n="footerNote">本工具在您的浏览器本地处理图片，不上传任何数据。</p>
+      <p>
+        © 2026 CertWatermark ·
+        <a href="legal/privacy.html" data-i18n="privacy">隐私政策</a> ·
+        <a href="legal/terms.html" data-i18n="terms">使用条款</a> ·
+        <a href="blog/zh/">博客</a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
